@@ -1,51 +1,35 @@
-import React, { useState } from 'react';
-import TodoList from './TodoList';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import Home from './Home';
 import AddTodoForm from './AddTodoForm';
-import EditTodoForm from './EditTodoForm'; // Import EditTodoForm component
+import EditTodoForm from './EditTodoForm';
+import TodoList from './TodoList';
 
-const App = () => {
-  const [showEditForm, setShowEditForm] = useState(false);
-  const [editTodoId, setEditTodoId] = useState(null);
-
-  // Function to handle opening the edit form
-  const handleEditClick = (todoId) => {
-    setEditTodoId(todoId);
-    setShowEditForm(true);
-  };
-
-  // Function to handle closing the edit form
-  const handleEditClose = () => {
-    setShowEditForm(false);
-  };
-
-  // Function to handle updating todos after edit or delete
-  const handleUpdateTodo = () => {
-    // Logic to update todos after edit or delete
-    // For example, you can fetch the updated todo list
-    // This function can be called after successful update or delete operation
-    // In this case, we don't need to do anything specific for updating after delete
-  };
+const DeleteTodoButton = () => {
+  const location = useLocation();
 
   return (
     <div>
-      <h1>My Todo App</h1>
-      <AddTodoForm />
-      {/* Render the EditTodoForm component if showEditForm is true */}
-      {showEditForm && (
-        <EditTodoForm 
-          todoId={editTodoId} 
-          onClose={handleEditClose} 
-          onUpdate={handleUpdateTodo} 
-        />
-      )}
-      <TodoList 
-        onEditClick={handleEditClick} 
-        onUpdate={handleUpdateTodo} // Pass handleUpdateTodo function to handle updates or deletions
-      /> 
-      {/* Pass handleEditClick function and handleUpdateTodo function as props */}
+      <h1>Delete Todo List</h1>
+      {location.pathname === '/delete-todo' && <TodoList showDeleteButton />}
     </div>
   );
 };
 
+const App = () => {
+  return (
+    <Router>
+      <div>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/add-todo" element={<AddTodoForm />} />
+          <Route path="/delete-todo" element={<DeleteTodoButton />} />
+          <Route path="/update-todo" element={<EditTodoForm />} />
+          <Route path="/get-todo" element={<TodoList />} />
+        </Routes>
+      </div>
+    </Router>
+  );
+};
+
 export default App;
-  

@@ -1,0 +1,27 @@
+/* Home.css */
+
+.home-container {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .button-container {
+    margin-top: 20px;
+  }
+  
+  .button {
+    display: block; /* Change display property to block */
+    width: 200px; /* Set width to create a button-like appearance */
+    padding: 10px 20px;
+    margin: 10px auto; /* Center the buttons horizontally */
+    background-color: #2eace6;
+    color: #080808;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: #ec0505;
+  }
+  

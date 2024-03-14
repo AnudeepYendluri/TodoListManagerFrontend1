@@ -1,25 +1,25 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './AddTodoForm.css';
+import './AddTodoForm.css'; // Import your CSS file
 
 const AddTodoForm = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [completed, setCompleted] = useState(false);  
+  const [completed, setCompleted] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     
     try {
-      const response = await axios.post('http://localhost:8080/addtodo', {
+      await axios.post('http://localhost:8080/addtodo', {
         title,
         description,
-        completed
+        completed,
       });
       
-      console.log('Todo added successfully:', response.data);
+      console.log('Todo added successfully');
       
-      // Reset form fields after successful submission
+      // Clear form fields after submission
       setTitle('');
       setDescription('');
       setCompleted(false);
@@ -31,22 +31,22 @@ const AddTodoForm = () => {
   return (
     <div className="add-todo-form-container">
       <h2>Add Todo</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
+      <form onSubmit={handleSubmit} className="todo-form">
+        <div className="form-group">
           <label>Title:</label>
           <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
         </div>
-        <div>
+        <div className="form-group">
           <label>Description:</label>
           <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
         </div>
-        <div>
+        <div className="form-group">
           <label>
             Completed:
             <input type="checkbox" checked={completed} onChange={(e) => setCompleted(e.target.checked)} />
           </label>
         </div>
-        <button type="submit">Add Todo</button>
+        <button type="submit" className="submit-button">Add Todo</button>
       </form>
     </div>
   );

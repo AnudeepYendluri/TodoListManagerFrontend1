@@ -1,44 +1,40 @@
-/* AddTodoForm.css */
-
-.AddTodoForm {
-  max-width: 400px;
-  margin: 0 auto;
+.add-todo-form-container {
+  width: 50%;
+  margin: auto;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #f9f9f9;
 }
 
-.AddTodoForm h2 {
-  margin-bottom: 15px;
-}
-
-.AddTodoForm form {
+.todo-form {
   display: flex;
   flex-direction: column;
 }
 
-.AddTodoForm label {
-  margin-bottom: 5px;
-}
-
-.AddTodoForm input[type="text"],
-.AddTodoForm textarea {
-  padding: 10px;
+.form-group {
   margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
 }
 
-.AddTodoForm button {
-  padding: 10px;
-  background-color: #007bff;
-  color: rgb(245, 17, 17);
+label {
+  font-weight: bold;
+}
+
+textarea, input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.submit-button {
+  background-color: #1088c0;
+  color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
+  padding: 10px 20px;
   cursor: pointer;
 }
 
-.AddTodoForm button:hover {
-  background-color: #28c970;
+.submit-button:hover {
+  background-color: #16fd6a;
 }
