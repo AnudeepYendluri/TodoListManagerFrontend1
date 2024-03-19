@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import './Register.css';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import './Register.css';
 
-const Register = () => {
+const Register = ({ onNavigate }) => {
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -19,8 +18,6 @@ const Register = () => {
     password: '',
     confirmPassword: '',
   });
-
-  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -53,7 +50,7 @@ const Register = () => {
     // Password validation
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,15}$/;
     if (!passwordRegex.test(formData.password)) {
-      newErrors.password = 'password should be having at leaset one capital, one small letter and one digit and one special charcter and no spaces allowed and length should be between 6 to 15 ';
+      newErrors.password = 'password should be having at least one capital, one small letter, one digit, one special character, and no spaces allowed and length should be between 6 to 15 ';
       isValid = false;
     }
 
@@ -87,7 +84,7 @@ const Register = () => {
       if (response.status === 200) {
         window.alert(response.data);
         // Redirect to the login page after successful registration
-        navigate('/login');
+        onNavigate('/login');
       }
     } catch (error) {
       console.error('Error:', error);

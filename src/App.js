@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
-import NavBar from './NavBar'; // Adjust the import path here
+import NavBar from './NavBar';
 import Register from './Register';
 import Home from './Home';
 import Login from './Login';
 import UserHome from './UserHome';
-import AddTodoForm from './AddTodoForm'; // Import AddTodoForm component
-import EditTodoForm from './EditTodoForm'; // Import EditTodoForm component
-import TodoList from './TodoList'; // Import TodoList component
+import AddTodoForm from './AddTodoForm';
+import EditTodoForm from './EditTodoForm';
+import TodoList from './TodoList';
+import DeleteTodoButton from './DeleteTodoButton';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -19,24 +20,27 @@ function App() {
 
   const handleLogout = () => {
     setIsLoggedIn(false);
-    window.location.href = '/';
+  };
+
+  const redirectToLogin = () => {
+    // Redirect to the login page
+    // You can replace '/login' with your actual login route
+    window.location.href = '/login';
   };
 
   return (
-    <Router>    
+    <Router>
       <div className="App">
-        {/* Render the NavBar component outside of the Routes component */}
         <NavBar isLoggedIn={isLoggedIn} onLogout={handleLogout} />
-        
-        {/* Render the Routes component */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/userhome" element={<UserHome />} />
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
-          <Route path="/add-todo" element={<AddTodoForm />} /> {/* Add route for AddTodoForm */}
-          <Route path="/edit-todo" element={<EditTodoForm />} /> {/* Add route for EditTodoForm */}
-          <Route path="/view-todo" element={<TodoList />} /> {/* Add route for TodoList */}
+          <Route path="/add-todo" element={<AddTodoForm />} />
+          <Route path="/delete-todo" element={<DeleteTodoButton />} />
+          <Route path="/update-todo" element={<EditTodoForm />} />
+          <Route path="/get-todo" element={<TodoList />} />
         </Routes>
       </div>
     </Router>

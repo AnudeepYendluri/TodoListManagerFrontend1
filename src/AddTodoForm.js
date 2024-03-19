@@ -11,7 +11,7 @@ const AddTodoForm = () => {
     e.preventDefault();
   
     try {
-      const authToken = localStorage.getItem('authToken');
+      const authToken = localStorage.getItem('token'); // Change 'authToken' to 'token'
       await axios.post('http://localhost:8080/addtodo', {
         title,
         description,

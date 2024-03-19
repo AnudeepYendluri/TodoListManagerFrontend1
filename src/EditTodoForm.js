@@ -1,5 +1,3 @@
-// EditTodoForm.js
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './EditTodoForm.css';
@@ -12,7 +10,11 @@ const EditTodoForm = () => {
   const [completed, setCompleted] = useState(false);
   
   useEffect(() => {
-    axios.get('http://localhost:8080/getalltodo')
+    axios.get('http://localhost:8080/getalltodo', {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}` // Include authentication token in request headers
+      }
+    })
       .then(response => {
         setTodos(response.data);
       })
@@ -36,6 +38,10 @@ const EditTodoForm = () => {
         title,
         description,
         completed
+      }, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}` // Include authentication token in request headers
+        }
       });
       
       console.log('Todo updated successfully');
@@ -46,6 +52,25 @@ const EditTodoForm = () => {
       setCompleted(false);
     } catch (error) {
       console.error('Error updating todo:', error);
+    }
+  };
+
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`http://localhost:8080/deletetodo/${selectedTodo.id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}` // Include authentication token in request headers
+        }
+      });
+      console.log('Todo deleted successfully:', selectedTodo.id);
+      // Refresh the todos after deletion
+      setTodos(todos.filter(todo => todo.id !== selectedTodo.id));
+      setSelectedTodo(null);
+      setTitle('');
+      setDescription('');
+      setCompleted(false);
+    } catch (error) {
+      console.error('Error deleting todo:', error);
     }
   };
 
@@ -77,6 +102,7 @@ const EditTodoForm = () => {
             </label>
           </div>
           <button type="submit">Update Todo</button>
+         
         </form>
       )}
     </div>

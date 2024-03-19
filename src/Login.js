@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import './Login.css'; // Import a CSS file for styling
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import './Login.css';
 
 const Login = ({ onLogin }) => {
   const [loginData, setLoginData] = useState({
@@ -22,23 +22,14 @@ const Login = ({ onLogin }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Add your local backend API endpoint for login
-      const apiUrl = 'http://localhost:8080/login'; // Replace with your actual backend API URL
-
-      // Make a POST request to the backend API
-      const response = await axios.post(apiUrl, loginData);
-
-      // Handle the response
-      console.log('API Response:', response.data);
-      const data = response.data;
-
+      const response = await axios.post('http://localhost:8080/login', loginData);
       if (response.status === 200) {
-        window.alert(data);
-        // Notify the parent component (App.js or wherever you render NavBar) about the login
+        // Save token to local storage or state
+        localStorage.setItem('token', response.data.authToken);
+        // Notify the parent component about the login
         onLogin();
-        navigate('/userhome'); // Redirect to UserHome after successful login
-      } else {
-        window.alert(data);
+        // Redirect to user home
+        navigate('/userhome');
       }
     } catch (error) {
       console.error('Error:', error);
