@@ -1,0 +1,28 @@
+/* Register.css */
+
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #82888ba2; /* Set your desired background color */
+  }
+  
+  .register-box {
+    background-color: #87CEEB;
+   /* Set background color to aqua */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    /* Additional styles */
+    max-width: 400px; /* Set the maximum width for better responsiveness */
+    margin: 20px; /* Add margin for better spacing */
+  }
+  
+  .error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+

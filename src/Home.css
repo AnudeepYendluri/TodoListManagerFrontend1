@@ -1,27 +1,34 @@
 /* Home.css */
 
+/* Container styling */
 .home-container {
-    text-align: center;
-    margin-top: 50px;
+    display: flex;
+    justify-content: space-around; /* Center items with space around them */
+    align-items: center;
+    padding: 30px; /* Decreased padding for a more compact look */
+    background-color: #e0e0e0; /* Lighter gray background color */
+    border-radius: 15px; /* Increased border-radius for rounded corners */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Added a subtle box shadow for depth */
   }
   
-  .button-container {
-    margin-top: 20px;
+  /* Content styling */
+  .content {
+    flex: 1;
+    margin-right: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    border-radius: 10px;
+    background-color: #ffffff;
   }
   
-  .button {
-    display: block; /* Change display property to block */
-    width: 200px; /* Set width to create a button-like appearance */
-    padding: 10px 20px;
-    margin: 10px auto; /* Center the buttons horizontally */
-    background-color: #2eace6;
-    color: #080808;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+  
+  .image-container {
+    flex: 1;
   }
   
-  .button:hover {
-    background-color: #ec0505;
+  .image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px; /* Add rounded corners to the image */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow effect */
   }
-  

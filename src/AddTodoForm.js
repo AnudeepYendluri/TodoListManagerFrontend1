@@ -9,16 +9,20 @@ const AddTodoForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+  
     try {
+      const authToken = localStorage.getItem('authToken');
       await axios.post('http://localhost:8080/addtodo', {
         title,
         description,
         completed,
+      }, {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
       });
-      
       console.log('Todo added successfully');
-      
+  
       // Clear form fields after submission
       setTitle('');
       setDescription('');
@@ -27,6 +31,7 @@ const AddTodoForm = () => {
       console.error('Error adding todo:', error);
     }
   };
+  
 
   return (
     <div className="add-todo-form-container">

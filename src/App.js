@@ -1,35 +1,46 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import './App.css';
+import NavBar from './NavBar'; // Adjust the import path here
+import Register from './Register';
 import Home from './Home';
-import AddTodoForm from './AddTodoForm';
-import EditTodoForm from './EditTodoForm';
-import TodoList from './TodoList';
+import Login from './Login';
+import UserHome from './UserHome';
+import AddTodoForm from './AddTodoForm'; // Import AddTodoForm component
+import EditTodoForm from './EditTodoForm'; // Import EditTodoForm component
+import TodoList from './TodoList'; // Import TodoList component
 
-const DeleteTodoButton = () => {
-  const location = useLocation();
+function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    window.location.href = '/';
+  };
 
   return (
-    <div>
-      <h1>Delete Todo List</h1>
-      {location.pathname === '/delete-todo' && <TodoList showDeleteButton />}
-    </div>
-  );
-};
-
-const App = () => {
-  return (
-    <Router>
-      <div>
+    <Router>    
+      <div className="App">
+        {/* Render the NavBar component outside of the Routes component */}
+        <NavBar isLoggedIn={isLoggedIn} onLogout={handleLogout} />
+        
+        {/* Render the Routes component */}
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/add-todo" element={<AddTodoForm />} />
-          <Route path="/delete-todo" element={<DeleteTodoButton />} />
-          <Route path="/update-todo" element={<EditTodoForm />} />
-          <Route path="/get-todo" element={<TodoList />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/userhome" element={<UserHome />} />
+          <Route path="/login" element={<Login onLogin={handleLogin} />} />
+          <Route path="/add-todo" element={<AddTodoForm />} /> {/* Add route for AddTodoForm */}
+          <Route path="/edit-todo" element={<EditTodoForm />} /> {/* Add route for EditTodoForm */}
+          <Route path="/view-todo" element={<TodoList />} /> {/* Add route for TodoList */}
         </Routes>
       </div>
     </Router>
   );
-};
+}
 
 export default App;

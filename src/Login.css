@@ -1,0 +1,47 @@
+/* Login.css */
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5e8c6; /* Set your desired background color */
+  }
+  
+  .login-box {
+    background-color: #89b7c9; /* Set your desired background color for the box */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .login-box h2 {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  input {
+    width: calc(100% - 16px); /* Adjusted width and removed padding for better consistency */
+    padding: 8px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+  }
+  
+  button {
+    background-color: #e91212; /* Set your desired button color */
+    color: #fff;
+    padding: 12px 24px; /* Adjusted padding for better button size */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  button:hover {
+    background-color: #117a8b; /* Set your desired button hover color */
+  }

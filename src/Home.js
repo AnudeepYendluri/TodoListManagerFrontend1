@@ -1,21 +1,22 @@
-// Home.js
-
 import React from 'react';
-import { Link } from 'react-router-dom';
-import './Home.css'
+import './Home.css'; // Import a CSS file for styling
+import todoImage from './todo.jpg'; // Import the image
 
-const Home = () => {
-  return (
-    <div className="home-container">
-      <h1>Welcome to Todo Manager</h1>
-      <div className="button-container">
-        <Link to="/add-todo" className="button">Add Todo</Link>
-        <Link to="/get-todo" className="button">View Todos</Link>
-        <Link to="/update-todo" className="button">Edit Todo</Link>
-        <Link to="/delete-todo" className="button">Delete Todo</Link>
-      </div>
+const Home = () => (
+  <div className="home-container">
+    <div className="content">
+      <h2>Welcome to Todo List Manager</h2>
+      {/* Updated home page content here */}
+      <p>Manage your tasks efficiently with our Todo List Manager. Stay organized, prioritize your tasks, and accomplish your goals seamlessly. Experience the simplicity and effectiveness of our tool designed to enhance your productivity.</p>
     </div>
-  );
-};
+    <div className="image-container">
+      <img
+        src={todoImage} // Replace with the actual image URL
+        alt="Todo List Manager Image"
+        className="image"
+      />
+    </div>
+  </div>
+);
 
 export default Home;
