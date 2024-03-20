@@ -72,11 +72,8 @@ const Register = ({ onNavigate }) => {
     }
 
     try {
-      // Add your local backend API endpoint for registration
-      const apiUrl = 'http://localhost:8080/register';
-
-      // Make a POST request to the backend API
-      const response = await axios.post(apiUrl, formData);
+      // Update the backend API URL to point to your backend deployed on Render
+      const response = await axios.post('https://todolistmanager.onrender.com/register', formData);
 
       // Handle the response (you can add more logic here)
       console.log('API Response:', response.data);
@@ -165,7 +162,7 @@ const Register = ({ onNavigate }) => {
           <br />
           <button type="submit">Register</button>
         </form>
-      </div>
+        </div>
     </div>
   );
 };
