@@ -26,7 +26,7 @@ const DeleteTodoButton = ({ onDelete }) => {
   const handleDelete = async (todoId) => {
     try {
       const authToken = localStorage.getItem('token');
-      await axios.delete(`http://localhost:8080/deletetodo/${todoId}`, {
+      await axios.delete(`https://todolistmanager.onrender.com/deletetodo/${todoId}`, {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },
