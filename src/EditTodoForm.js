@@ -10,7 +10,7 @@ const EditTodoForm = () => {
   const [completed, setCompleted] = useState(false);
   
   useEffect(() => {
-    axios.get('http://localhost:8080/getalltodo', {
+    axios.get('https://todolistmanager.onrender.com/getalltodo', {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}` // Include authentication token in request headers
       }
@@ -50,6 +50,8 @@ const EditTodoForm = () => {
       setTitle('');
       setDescription('');
       setCompleted(false);
+      // Refresh the todos after updating
+      fetchTodos();
     } catch (error) {
       console.error('Error updating todo:', error);
     }
@@ -57,14 +59,14 @@ const EditTodoForm = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:8080/deletetodo/${selectedTodo.id}`, {
+      await axios.delete(`https://todolistmanager.onrender.com/deletetodo/${selectedTodo.id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}` // Include authentication token in request headers
         }
       });
       console.log('Todo deleted successfully:', selectedTodo.id);
       // Refresh the todos after deletion
-      setTodos(todos.filter(todo => todo.id !== selectedTodo.id));
+      fetchTodos();
       setSelectedTodo(null);
       setTitle('');
       setDescription('');
@@ -102,7 +104,7 @@ const EditTodoForm = () => {
             </label>
           </div>
           <button type="submit">Update Todo</button>
-         
+          <button type="button" onClick={handleDelete}>Delete Todo</button>
         </form>
       )}
     </div>
