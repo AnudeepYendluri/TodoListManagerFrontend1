@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './DeleteTodoButton.css';
 
-const DeleteTodoButton = ({ onDelete }) => {
+const DeleteTodoButton = ({ todoId, onDelete }) => {
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
@@ -12,7 +12,8 @@ const DeleteTodoButton = ({ onDelete }) => {
   const fetchTodos = async () => {
     try {
       const authToken = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:8080/getalltodo', {
+      const apiUrl = 'https://todolistmanager.onrender.com/getalltodo'; // Update with your Render API URL
+      const response = await axios.get(apiUrl, {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },
@@ -23,7 +24,7 @@ const DeleteTodoButton = ({ onDelete }) => {
     }
   };
 
-  const handleDelete = async (todoId) => {
+  const handleDelete = async () => {
     try {
       const authToken = localStorage.getItem('token');
       await axios.delete(`https://todolistmanager.onrender.com/deletetodo/${todoId}`, {
@@ -32,7 +33,10 @@ const DeleteTodoButton = ({ onDelete }) => {
         },
       });
       console.log('Todo deleted successfully:', todoId);
-      // You can add a callback here to refresh the todos in the parent component
+      // If onDelete is provided, invoke it to notify the parent component of the deletion
+      if (onDelete) {
+        onDelete(todoId);
+      }
     } catch (error) {
       console.error('Error deleting todo:', error);
     }
@@ -46,7 +50,7 @@ const DeleteTodoButton = ({ onDelete }) => {
           <li key={todo.id}>
             <span>{todo.title}</span>
             {/* Add some margin or padding to the button */}
-            <button className="delete-button" onClick={() => handleDelete(todo.id)}>Delete</button>
+            <button className="delete-button" onClick={handleDelete}>Delete</button>
           </li>
         ))}
       </ul>
