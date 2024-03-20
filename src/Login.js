@@ -47,13 +47,13 @@ const Login = ({ onLogin }) => {
               <tr>
                 <td>Email:</td>
                 <td>
-                  <input type="email" name="email" value={loginData.email} onChange={handleChange} />
+                  <input type="email" name="email" value={loginData.email} onChange={handleChange} autoComplete="email" />
                 </td>
               </tr>
               <tr>
                 <td>Password:</td>
                 <td>
-                  <input type="password" name="password" value={loginData.password} onChange={handleChange} />
+                  <input type="password" name="password" value={loginData.password} onChange={handleChange} autoComplete="current-password" />
                 </td>
               </tr>
             </tbody>

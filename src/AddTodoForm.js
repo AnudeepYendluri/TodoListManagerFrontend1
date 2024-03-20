@@ -11,8 +11,9 @@ const AddTodoForm = () => {
     e.preventDefault();
   
     try {
-      const authToken = localStorage.getItem('token'); // Change 'authToken' to 'token'
-      await axios.post('http://localhost:8080/addtodo', {
+      const authToken = localStorage.getItem('token'); // Retrieve the authentication token from localStorage
+      const apiUrl = 'https://todolistmanager.onrender.com/addtodo'; // Update the API URL with your Render link + endpoint
+      await axios.post(apiUrl, {
         title,
         description,
         completed,

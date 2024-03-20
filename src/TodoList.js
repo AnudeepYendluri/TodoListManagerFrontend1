@@ -12,7 +12,7 @@ const TodoList = () => {
   const fetchTodos = async () => {
     try {
       const authToken = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:8080/getalltodo', {
+      const response = await axios.get('https://todolistmanager.onrender.com/getalltodo', {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },
