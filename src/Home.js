@@ -1,6 +1,6 @@
 import React from 'react';
 import './Home.css'; // Import a CSS file for styling
-import todoImage from './todo.jpg'; // Import the image
+import todoImage from './todo2.jpg'; // Import the image
 
 const Home = () => (
   <div className="home-container">
@@ -15,7 +15,7 @@ const Home = () => (
         alt="Todo List Manager Image"
         className="image"
       />
-    </div>
+    </div>  
   </div>
 );
 

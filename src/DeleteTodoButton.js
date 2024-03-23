@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './DeleteTodoButton.css';
 
-const DeleteTodoButton = ({ todoId, onDelete }) => {
+const DeleteTodoButton = () => {
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
@@ -24,7 +23,7 @@ const DeleteTodoButton = ({ todoId, onDelete }) => {
     }
   };
 
-  const handleDelete = async () => {
+  const handleDelete = async (todoId) => {
     try {
       const authToken = localStorage.getItem('token');
       await axios.delete(`https://todolistmanager.onrender.com/deletetodo/${todoId}`, {
@@ -33,10 +32,8 @@ const DeleteTodoButton = ({ todoId, onDelete }) => {
         },
       });
       console.log('Todo deleted successfully:', todoId);
-      // If onDelete is provided, invoke it to notify the parent component of the deletion
-      if (onDelete) {
-        onDelete(todoId);
-      }
+      // After successful deletion, fetch the updated todos
+      fetchTodos();
     } catch (error) {
       console.error('Error deleting todo:', error);
     }
@@ -49,8 +46,7 @@ const DeleteTodoButton = ({ todoId, onDelete }) => {
         {todos.map(todo => (
           <li key={todo.id}>
             <span>{todo.title}</span>
-            {/* Add some margin or padding to the button */}
-            <button className="delete-button" onClick={handleDelete}>Delete</button>
+            <button onClick={() => handleDelete(todo.id)}>Delete</button>
           </li>
         ))}
       </ul>

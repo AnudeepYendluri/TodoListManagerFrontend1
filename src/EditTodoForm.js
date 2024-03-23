@@ -8,19 +8,23 @@ const EditTodoForm = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [completed, setCompleted] = useState(false);
-  
-  useEffect(() => {
-    axios.get('https://todolistmanager.onrender.com/getalltodo', {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}` // Include authentication token in request headers
-      }
-    })
-      .then(response => {
-        setTodos(response.data);
-      })
-      .catch(error => {
-        console.error('Error fetching todos:', error.message);
+
+  const fetchTodos = async () => {
+    try {
+      const authToken = localStorage.getItem('token');
+      const response = await axios.get('https://todolistmanager.onrender.com/getalltodo', {
+        headers: {
+          Authorization: `Bearer ${authToken}`
+        }
       });
+      setTodos(response.data);
+    } catch (error) {
+      console.error('Error fetching todos:', error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchTodos();
   }, []);
 
   const handleEdit = (todo) => {
@@ -40,7 +44,7 @@ const EditTodoForm = () => {
         completed
       }, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}` // Include authentication token in request headers
+          Authorization: `Bearer ${localStorage.getItem('token')}`
         }
       });
       
@@ -54,25 +58,6 @@ const EditTodoForm = () => {
       fetchTodos();
     } catch (error) {
       console.error('Error updating todo:', error);
-    }
-  };
-
-  const handleDelete = async () => {
-    try {
-      await axios.delete(`https://todolistmanager.onrender.com/deletetodo/${selectedTodo.id}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}` // Include authentication token in request headers
-        }
-      });
-      console.log('Todo deleted successfully:', selectedTodo.id);
-      // Refresh the todos after deletion
-      fetchTodos();
-      setSelectedTodo(null);
-      setTitle('');
-      setDescription('');
-      setCompleted(false);
-    } catch (error) {
-      console.error('Error deleting todo:', error);
     }
   };
 
@@ -104,7 +89,6 @@ const EditTodoForm = () => {
             </label>
           </div>
           <button type="submit">Update Todo</button>
-          <button type="button" onClick={handleDelete}>Delete Todo</button>
         </form>
       )}
     </div>
