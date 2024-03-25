@@ -8,6 +8,7 @@ const EditTodoForm = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [completed, setCompleted] = useState(false);
+  const [showMessage, setShowMessage] = useState(false); // State for showing success message
 
   const fetchTodos = async () => {
     try {
@@ -47,15 +48,22 @@ const EditTodoForm = () => {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }
       });
-      
-      console.log('Todo updated successfully');
-      
+
+      // Show success message
+      setShowMessage(true);
+
       // Clear form fields after submission
       setTitle('');
       setDescription('');
       setCompleted(false);
+      
       // Refresh the todos after updating
       fetchTodos();
+
+      // Hide success message after 3 seconds
+      setTimeout(() => {
+        setShowMessage(false);
+      }, 3000);
     } catch (error) {
       console.error('Error updating todo:', error);
     }
@@ -72,6 +80,7 @@ const EditTodoForm = () => {
           </li>
         ))}
       </ul>
+      {showMessage && <p>Todo Updated Successfully</p>} {/* Success message */}
       {selectedTodo && (
         <form onSubmit={handleSubmit}>    
           <div>

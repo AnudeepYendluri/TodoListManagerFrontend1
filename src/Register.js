@@ -19,6 +19,8 @@ const Register = ({ onNavigate }) => {
     confirmPassword: '',
   });
 
+  const [registrationSuccess, setRegistrationSuccess] = useState(false); // New state for registration success message
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -65,21 +67,30 @@ const Register = ({ onNavigate }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     if (!validateForm()) {
       // Form is not valid, do not proceed with the submission
       return;
     }
-
+  
     try {
       // Update the backend API URL to point to your backend deployed on Render
       const response = await axios.post('https://todolistmanager.onrender.com/register', formData);
-
+  
       // Handle the response (you can add more logic here)
       console.log('API Response:', response.data);
-
+  
       if (response.status === 200) {
-        window.alert(response.data);
+        // Display registration success message
+        setRegistrationSuccess(true);
+        // Reset form data
+        setFormData({
+          username: '',
+          email: '',
+          mobileNumber: '',
+          password: '',
+          confirmPassword: '',
+        });
         // Redirect to the login page after successful registration
         onNavigate('/login');
       }
@@ -87,6 +98,7 @@ const Register = ({ onNavigate }) => {
       console.error('Error:', error);
     }
   };
+  
 
   return (
     <div className="register-container">
@@ -162,6 +174,7 @@ const Register = ({ onNavigate }) => {
           <br />
           <button type="submit">Register</button>
         </form>
+        {registrationSuccess && <p className="success-message">Registration Successful</p>} {/* Display success message */}
         </div>
     </div>
   );

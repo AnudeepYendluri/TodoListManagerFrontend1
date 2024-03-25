@@ -6,10 +6,11 @@ const AddTodoForm = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [completed, setCompleted] = useState(false);
+  const [todoCreated, setTodoCreated] = useState(false); // State for todo creation success message
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     try {
       const authToken = localStorage.getItem('token'); // Retrieve the authentication token from localStorage
       const apiUrl = 'https://todolistmanager.onrender.com/addtodo'; // Update the API URL with your Render link + endpoint
@@ -23,16 +24,18 @@ const AddTodoForm = () => {
         },
       });
       console.log('Todo added successfully');
-  
+
       // Clear form fields after submission
       setTitle('');
       setDescription('');
       setCompleted(false);
+
+      // Set todo creation success message
+      setTodoCreated(true);
     } catch (error) {
       console.error('Error adding todo:', error);
     }
   };
-  
 
   return (
     <div className="add-todo-form-container">
@@ -54,6 +57,7 @@ const AddTodoForm = () => {
         </div>
         <button type="submit" className="submit-button">Add Todo</button>
       </form>
+      {todoCreated && <p className="success-message">Todo created successfully</p>} {/* Display todo creation success message */}
     </div>
   );
 };

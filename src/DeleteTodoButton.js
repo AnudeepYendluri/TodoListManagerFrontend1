@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const DeleteTodoButton = () => {
   const [todos, setTodos] = useState([]);
+  const [showMessage, setShowMessage] = useState(false);
 
   useEffect(() => {
     fetchTodos();
@@ -32,8 +33,14 @@ const DeleteTodoButton = () => {
         },
       });
       console.log('Todo deleted successfully:', todoId);
+      // Show the message
+      setShowMessage(true);
       // After successful deletion, fetch the updated todos
       fetchTodos();
+      // Hide the message after a brief delay
+      setTimeout(() => {
+        setShowMessage(false);
+      }, 2000); // Adjust the time as needed
     } catch (error) {
       console.error('Error deleting todo:', error);
     }
@@ -50,6 +57,7 @@ const DeleteTodoButton = () => {
           </li>
         ))}
       </ul>
+      {showMessage && <p>Todo Deleted Successfully</p>}
     </div>
   );
 };

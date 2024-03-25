@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
+import { apiUrl } from './Configuration';
 
 const Login = ({ onLogin }) => {
   const [loginData, setLoginData] = useState({
     email: '',
     password: '',
   });
-
+  const [error, setError] = useState(null); // State to handle error message
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -23,7 +24,7 @@ const Login = ({ onLogin }) => {
     e.preventDefault();
     try {
       // Update the backend API URL to point to your backend deployed on Render
-      const response = await axios.post('https://todolistmanager.onrender.com/login', loginData);
+      const response = await axios.post(`${apiUrl}/login`, loginData);
       if (response.status === 200) {
         // Save token to local storage or state
         localStorage.setItem('token', response.data.authToken);
@@ -34,6 +35,7 @@ const Login = ({ onLogin }) => {
       }
     } catch (error) {
       console.error('Error:', error);
+      setError('Invalid credentials'); // Set error message for invalid credentials
     }
   };
 
@@ -59,11 +61,12 @@ const Login = ({ onLogin }) => {
             </tbody>
           </table>
           <br />
+          {error && <p className="error-message">{error}</p>} {/* Display error message */}
           <button type="submit">Login</button>
         </form>
       </div>
     </div>
   );
 };
-  
+
 export default Login;
