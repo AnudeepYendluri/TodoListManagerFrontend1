@@ -9,6 +9,14 @@ const NavBar = ({ isLoggedIn, onLogout }) => {
     navigate(path);
   };
 
+  const handleLogout = () => {
+    // Perform logout action
+    onLogout();
+
+    // Redirect to Home component
+    handleNavigation('/');
+  };
+
   return (
     <nav className="navbar">
       <div className="right">
@@ -19,7 +27,7 @@ const NavBar = ({ isLoggedIn, onLogout }) => {
           {!isLoggedIn && <li><a href="/" onClick={() => handleNavigation('/')}>Home</a></li>}
           {!isLoggedIn && <li><a href="/register" onClick={() => handleNavigation('/register')}>Register</a></li>}
           {!isLoggedIn && <li><a href="/login" onClick={() => handleNavigation('/login')}>Login</a></li>}
-          {isLoggedIn && <li><button onClick={onLogout}>Logout</button></li>}
+          {isLoggedIn && <li><button onClick={handleLogout}>Logout</button></li>}
         </ul>
       </div>
     </nav>
