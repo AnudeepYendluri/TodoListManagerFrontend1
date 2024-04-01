@@ -18,7 +18,7 @@ const DeleteTodoButton = () => {
 
       // Make API call to fetch todos for the user
       const token = localStorage.getItem('token');
-      const response = await axios.get(`http://localhost:8080/getalltodo/${userId}`, {
+      const response = await axios.get(`https://todolistmanager.onrender.com/getalltodo/${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -37,7 +37,7 @@ const DeleteTodoButton = () => {
   const getUserId = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:8080/getuserid', {
+      const response = await axios.get('https://todolistmanager.onrender.com/getuserid', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -51,7 +51,7 @@ const DeleteTodoButton = () => {
   const handleDelete = async (todoId) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:8080/deletetodo/${todoId}`, {
+      await axios.delete(`https://todolistmanager.onrender.com/deletetodo/${todoId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

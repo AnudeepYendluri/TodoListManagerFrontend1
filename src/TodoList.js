@@ -17,7 +17,7 @@ const TodoList = () => {
 
       // Make API call to fetch todos for the user
       const token = localStorage.getItem('token');
-      const response = await axios.get(`http://localhost:8080/getalltodo/${userId}`, {
+      const response = await axios.get(`https://todolistmanager.onrender.com/getalltodo/${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -36,7 +36,7 @@ const TodoList = () => {
   const getUserId = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:8080/getuserid', {
+      const response = await axios.get('https://todolistmanager.onrender.com/getuserid', {
         headers: {
           Authorization: `Bearer ${token}`,
         },

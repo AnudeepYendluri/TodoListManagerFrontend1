@@ -23,7 +23,7 @@ const EditTodoForm = () => {
 
       // Make API call to fetch todos for the user
       const token = localStorage.getItem('token');
-      const response = await axios.get(`http://localhost:8080/getalltodo/${userId}`, {
+      const response = await axios.get(`https://todolistmanager.onrender.com/getalltodo/${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -42,7 +42,7 @@ const EditTodoForm = () => {
   const getUserId = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:8080/getuserid', {
+      const response = await axios.get('https://todolistmanager.onrender.com/getuserid', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -66,7 +66,7 @@ const EditTodoForm = () => {
     try {
       // Make API call to edit todo
       const token = localStorage.getItem('token');
-      await axios.put(`http://localhost:8080/updatetodo/${editedTodo.id}`, {
+      await axios.put(`https://todolistmanager.onrender.com/updatetodo/${editedTodo.id}`, {
         title: title,
         description: description,
         completed: completed
