@@ -1,58 +1,29 @@
 /* EditTodoForm.css */
 
-.edit-todo-form-container {
-    max-width: 400px;
-    margin: 20px auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .edit-todo-form-container h2 {
-    margin-bottom: 10px;
-  }
-  
-  .edit-todo-form-container ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .edit-todo-form-container li {
-    margin-bottom: 10px;
-  }
-  
-  .edit-todo-form-container button {
-    padding: 8px 16px;
-    background-color: #14abb1;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-left: 10px;
-  }
-  
-  .edit-todo-form-container button:hover {
-    background-color: #16f89a;
-  }
-  
-  .edit-todo-form-container form div {
-    margin-bottom: 10px;
-  }
-  
-  .edit-todo-form-container form label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .edit-todo-form-container form input,
-  .edit-todo-form-container form textarea {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-  }
-  
-  .edit-todo-form-container form button[type="submit"] {
-    width: 100%;
-  }
-  
+.edit-todo-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.edit-todo-list {
+  padding: 0;
+  list-style: none;
+}
+
+.edit-todo-item {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.edit-todo-item div {
+  flex: 1;
+}
+
+.edit-todo-item button {
+  margin-left: 10px;
+}
+
+.edit-todo-item button:hover {
+  cursor: pointer;
+}

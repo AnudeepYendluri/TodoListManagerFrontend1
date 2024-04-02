@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './TodoList.css'; // Importing the CSS file
 
 const TodoList = () => {
   const [todos, setTodos] = useState([]);
@@ -56,12 +57,12 @@ const TodoList = () => {
   }
 
   return (
-    <div>
+    <div className="todo-list-container"> {/* Applying the CSS class */}
       <h2>Todo List</h2>
       <ul>
         {todos.map(todo => (
           <li key={todo.id}>
-            {todo.title}
+            <span>{todo.title}</span>
           </li>
         ))}
       </ul>
