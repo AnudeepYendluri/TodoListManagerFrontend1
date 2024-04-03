@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './DeleteTodoButton.css';
 
 const DeleteTodoButton = () => {
   const [todos, setTodos] = useState([]);
@@ -77,13 +78,13 @@ const DeleteTodoButton = () => {
   }
 
   return (
-    <div>
+    <div className="delete-todo-container">
       <h2>All Todos</h2>
-      <ul>
+      <ul className="delete-todo-list">
         {todos.map(todo => (
-          <li key={todo.id}>
+          <li key={todo.id} className="delete-todo-item">
             <strong>Title:</strong> {todo.title}
-            <button onClick={() => handleDelete(todo.id)}>Delete</button>
+            <button className="delete-todo-delete-btn" onClick={() => handleDelete(todo.id)}>Delete</button>
           </li>
         ))}
       </ul>

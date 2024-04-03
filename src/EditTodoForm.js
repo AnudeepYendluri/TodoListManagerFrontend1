@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import './EditTodoForm.css';
 
 
 const EditTodoForm = () => {
@@ -106,37 +106,38 @@ const EditTodoForm = () => {
   }
 
   return (
-    <div>
+    <div className="edit-todo-container">
       <h2>Edit Todo</h2>
       {editMode ? (
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label>Title:</label>
-            <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
+        <form className="edit-todo-form" onSubmit={handleSubmit}>
+          <div className="edit-todo-input-group">
+            <label className="edit-todo-label">Title:</label>
+            <input type="text" className="edit-todo-input" value={title} onChange={(e) => setTitle(e.target.value)} required />
           </div>
-          <div>
-            <label>Description:</label>
-            <textarea value={description} onChange={(e) => setDescription(e.target.value)} required />
+          <div className="edit-todo-input-group">
+            <label className="edit-todo-label">Description:</label>
+            <textarea className="edit-todo-textarea" value={description} onChange={(e) => setDescription(e.target.value)} required />
           </div>
-          <div>
-            <label>Completed:</label>
-            <input type="checkbox" checked={completed} onChange={(e) => setCompleted(e.target.checked)} />
+          <div className="edit-todo-input-group">
+            <label className="edit-todo-label">Completed:</label>
+            <input type="checkbox" className="edit-todo-checkbox" checked={completed} onChange={(e) => setCompleted(e.target.checked)} />
           </div>
-          <button type="submit">Update Todo</button>
+          <button type="submit" className="edit-todo-btn">Update Todo</button>
         </form>
       ) : (
-        <ul>
+        <ul className="edit-todo-list">
           {todos.map(todo => (
-            <li key={todo.id}>
+            <li key={todo.id} className="edit-todo-item">
               <strong>Title:</strong> {todo.title}
-              <button onClick={() => handleEdit(todo)}>Edit</button>
+              <button className="edit-todo-edit-btn" onClick={() => handleEdit(todo)}>Edit</button>
             </li>
           ))}
         </ul>
       )}
-      {successMessage && <p>{successMessage}</p>}
+      {successMessage && <p className="edit-todo-success">{successMessage}</p>}
     </div>
   );
+  
 };
 
 export default EditTodoForm;

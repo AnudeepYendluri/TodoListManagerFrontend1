@@ -1,29 +1,68 @@
-/* EditTodoForm.css */
-
 .edit-todo-container {
-  max-width: 600px;
-  margin: 0 auto;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adding a subtle shadow effect */
 }
 
+.edit-todo-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.edit-todo-label {
+    font-weight: bold;
+}
+
+.edit-todo-input,
+.edit-todo-textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box; /* Ensuring padding and border are included in the width */
+}
+
+.edit-todo-textarea {
+    resize: vertical; /* Allow vertical resizing of textarea */
+}
+
+.edit-todo-checkbox {
+    margin-right: 5px;
+}
+
+.edit-todo-btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 10px; /* Adding some space between todo and edit button */
+    display: block; /* Making the button a block-level element to take full width */
+}
+
+.edit-todo-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Removing default bullet points */
 .edit-todo-list {
-  padding: 0;
-  list-style: none;
+    list-style-type: none;
+    padding: 0;
 }
 
 .edit-todo-item {
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-}
-
-.edit-todo-item div {
-  flex: 1;
+    margin-bottom: 20px; /* Adding some space between todo items */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
 }
 
 .edit-todo-item button {
-  margin-left: 10px;
-}
-
-.edit-todo-item button:hover {
-  cursor: pointer;
+    margin-left: 10px;
 }
