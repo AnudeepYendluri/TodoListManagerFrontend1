@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './AddTodoForm.css'; // Import the CSS file for styling
 
 const AddTodoForm = () => {
   const [title, setTitle] = useState('');
@@ -7,6 +8,7 @@ const AddTodoForm = () => {
   const [completed, setCompleted] = useState(false);
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState('');
+  const [priority, setPriority] = useState('low'); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,7 +21,8 @@ const AddTodoForm = () => {
       const response = await axios.post(`https://todolistmanager.onrender.com/addtodo?userId=${userId}`, {
         title: title,
         description: description,
-        completed: completed
+        completed: completed,
+        priority : priority
       }, {
         headers: {
           Authorization: `Bearer ${token}`
@@ -32,6 +35,7 @@ const AddTodoForm = () => {
       setTitle('');
       setDescription('');
       setCompleted(false);
+      setPriority('');
 
       // Show success message
       setSuccessMessage('Todo Added Successfully');
@@ -65,24 +69,32 @@ const AddTodoForm = () => {
   };
 
   return (
-    <div>
+    <div className="add-todo-form-container">
       <h2>Add New Todo</h2>
-      {successMessage && <p>{successMessage}</p>}
-      {error && <p>{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <div>
+      {successMessage && <p className="success-message">{successMessage}</p>}
+      {error && <p className="error-message">{error}</p>}
+      <form onSubmit={handleSubmit} className="todo-form">
+        <div className="form-group">
           <label>Title:</label>
           <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
         </div>
-        <div>
+        <div className="form-group">
           <label>Description:</label>
           <textarea value={description} onChange={(e) => setDescription(e.target.value)} required />
         </div>
-        <div>
+        <div className="form-group">
           <label>Completed:</label>
           <input type="checkbox" checked={completed} onChange={(e) => setCompleted(e.target.checked)} />
         </div>
-        <button type="submit">Add Todo</button>
+        <div className="form-group">
+          <label>Priority:</label>
+          <select value={priority} onChange={(e) => setPriority(e.target.value)}>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+        <button type="submit" className="submit-button">Add Todo</button>
       </form>
     </div>
   );

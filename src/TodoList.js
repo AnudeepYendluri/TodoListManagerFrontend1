@@ -13,10 +13,7 @@ const TodoList = () => {
 
   const fetchTodos = async () => {
     try {
-      // Get userId using getUserId API
       const userId = await getUserId();
-
-      // Make API call to fetch todos for the user
       const token = localStorage.getItem('token');
       const response = await axios.get(`https://todolistmanager.onrender.com/getalltodo/${userId}`, {
         headers: {
@@ -33,7 +30,6 @@ const TodoList = () => {
     }
   };
 
-  // Function to get user ID from token by making an API call to your backend
   const getUserId = async () => {
     try {
       const token = localStorage.getItem('token');
@@ -48,6 +44,42 @@ const TodoList = () => {
     }
   };
 
+  const handlePriorityFilter = async (priority) => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await axios.get(`https://todolistmanager.onrender.com/filter?priority=${priority}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      setTodos(response.data);
+      setLoading(false);
+    } catch (error) {
+      console.error('Error fetching filtered todos:', error);
+      setError('Failed to fetch filtered todos. Please try again.');
+      setLoading(false);
+    }
+  };
+
+  const handleCompletedFilter = async (completed) => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await axios.get(`https://todolistmanager.onrender.com/filter?completed=${completed.toString()}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      setTodos(response.data);
+      setLoading(false);
+    } catch (error) {
+      console.error('Error fetching filtered todos:', error);
+      setError('Failed to fetch filtered todos. Please try again.');
+      setLoading(false);
+    }
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -59,10 +91,16 @@ const TodoList = () => {
   return (
     <div className="todo-list-container"> {/* Applying the CSS class */}
       <h2>Todo List</h2>
+      <button onClick={() => handleCompletedFilter(true)} className='filterButton'>Completed</button>
+      <button onClick={() => handleCompletedFilter(false)} className='filterButton'>Pending</button>
+      <button onClick={() => handlePriorityFilter('high')} className='filterButtonHigh'>High</button>
+      <button onClick={() => handlePriorityFilter('medium')} className='filterButtonMedium'>Medium</button>
+      <button onClick={() => handlePriorityFilter('low')} className='filterButtonLow'>Low</button>
       <ul>
         {todos.map(todo => (
           <li key={todo.id}>
             <span>{todo.title}</span>
+            <span className={`priority-${todo.priority}`}>{todo.priority}</span> {/* Displaying priority level */}
           </li>
         ))}
       </ul>

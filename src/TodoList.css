@@ -23,6 +23,7 @@
   margin-bottom: 10px;
   padding: 5px;
   border-bottom: 1px solid #ddd;
+  position: relative; /* Added position relative */
 }
 
 .todo-list-container li:last-child {
@@ -33,3 +34,73 @@
   font-size: 18px;
   color: #666;
 }
+
+/* Styling for priority */
+.todo-list-container li .priority-low {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #4CAF50; /* Green */
+  color: white;
+  padding: 5px;
+  border-radius: 3px;
+  font-size: 12px;
+}
+
+.todo-list-container li .priority-medium {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #FFD700; /* Yellow */
+  color: #333;
+  padding: 5px;
+  border-radius: 3px;
+  font-size: 12px;
+}
+
+.todo-list-container li .priority-high {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #FF6347; /* Red */
+  color: white;
+  padding: 5px;
+  border-radius: 3px;
+  font-size: 12px;
+}
+
+/* ButtonStyles.css */
+
+.filterButton {
+  margin-right: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #76d4ee; /* Red */
+  color: rgb(255, 255, 255);
+}
+
+.filterButtonPending {
+  margin-right: 10px;
+  background-color: #0fb9ec;
+  color: #FF6347;
+}
+
+.filterButtonHigh {
+  margin-right: 10px;
+  background-color: #FF6347; /* Red */
+  color: white;
+}
+
+.filterButtonMedium {
+  margin-right: 10px;
+  background-color: #FFD700; /* Yellow */
+  color: #333;
+}
+
+.filterButtonLow {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+
