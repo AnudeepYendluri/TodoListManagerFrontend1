@@ -1,3 +1,5 @@
+/* EditTodoForm.css */
+
 .edit-todo-container {
     max-width: 500px;
     margin: 0 auto;
@@ -5,36 +7,36 @@
     background-color: #f9f9f9;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adding a subtle shadow effect */
-}
-
-.edit-todo-title {
+  }
+  
+  .edit-todo-title {
     font-size: 24px;
     margin-bottom: 20px;
-}
-
-.edit-todo-label {
+  }
+  
+  .edit-todo-label {
     font-weight: bold;
-}
-
-.edit-todo-input,
-.edit-todo-textarea {
+  }
+  
+  .edit-todo-input,
+  .edit-todo-textarea {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 3px;
     box-sizing: border-box; /* Ensuring padding and border are included in the width */
-}
-
-.edit-todo-textarea {
+  }
+  
+  .edit-todo-textarea {
     resize: vertical; /* Allow vertical resizing of textarea */
-}
-
-.edit-todo-checkbox {
+  }
+  
+  .edit-todo-checkbox {
     margin-right: 5px;
-}
-
-.edit-todo-btn {
+  }
+  
+  .edit-todo-btn {
     padding: 10px 20px;
     background-color: #007bff;
     color: #fff;
@@ -43,26 +45,46 @@
     cursor: pointer;
     margin-top: 10px; /* Adding some space between todo and edit button */
     display: block; /* Making the button a block-level element to take full width */
-}
-
-.edit-todo-btn:hover {
+  }
+  
+  .edit-todo-btn:hover {
     background-color: #0056b3;
-}
+  }
+  
+  /* Dark mode styles */
+  .dark-mode .edit-todo-container {
+    background-color: #0a0a0a; /* Dark mode background color */
+  }
+  
+  /* Adjust text color in dark mode */
+  .dark-mode .edit-todo-title,
+  .dark-mode .edit-todo-label,
+  .dark-mode .edit-todo-input,
+  .dark-mode .edit-todo-textarea,
+  .dark-mode .edit-todo-checkbox,
+  .dark-mode .edit-todo-btn {
+    color: #fff; /* White text color in dark mode */
+  }
 
-/* Removing default bullet points */
-.edit-todo-list {
+  .dark-mode .edit-todo-item {
+    color: #080808; /* White text color for todos in dark mode */
+  }
+  
+  /* Removing default bullet points */
+  .edit-todo-list {
     list-style-type: none;
     padding: 0;
-}
-
-.edit-todo-item {
+  }
+  
+  .edit-todo-item {
     margin-bottom: 20px; /* Adding some space between todo items */
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #fff;
-}
-
-.edit-todo-item button {
+  }
+  
+  .edit-todo-item button {
     margin-left: 10px;
-}
+  }
+  

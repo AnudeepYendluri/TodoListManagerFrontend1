@@ -1,3 +1,5 @@
+/* DeleteTodoButton.css */
+
 .delete-todo-container {
   max-width: 500px;
   margin: 0 auto;
@@ -7,22 +9,13 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adding a subtle shadow effect */
 }
 
-.delete-todo-title {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-.delete-todo-list {
-  list-style-type: none;
-  padding: 0;
-}
-
 .delete-todo-item {
   margin-bottom: 20px; /* Adding some space between todo items */
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #fff;
+  background-color: #fff; /* Default background color */
+  color: #333; /* Default text color */
 }
 
 .delete-todo-item strong {
@@ -41,4 +34,14 @@
 
 .delete-todo-item button:hover {
   background-color: #c82333;
+}
+
+/* Dark mode styles */
+.dark-mode .delete-todo-container {
+  background-color: #333; /* Dark mode background color */
+}
+
+/* Adjust text color in dark mode */
+.dark-mode .delete-todo-item {
+  color: #0c0b0b; /* White text color in dark mode */
 }

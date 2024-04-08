@@ -1,8 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import DarkModeToggle from './DarkModeToggle'; // Import the DarkModeToggle component
 import './NavBar.css';
 
-const NavBar = ({ isLoggedIn, onLogout }) => {
+const NavBar = ({ isLoggedIn, onLogout, isDarkMode, toggleDarkMode }) => {
   const navigate = useNavigate();
 
   const handleNavigation = (path) => {
@@ -28,6 +29,8 @@ const NavBar = ({ isLoggedIn, onLogout }) => {
           {!isLoggedIn && <li><a href="/register" onClick={() => handleNavigation('/register')}>Register</a></li>}
           {!isLoggedIn && <li><a href="/login" onClick={() => handleNavigation('/login')}>Login</a></li>}
           {isLoggedIn && <li><button onClick={handleLogout}>Logout</button></li>}
+          {/* Add the DarkModeToggle component */}
+          <li><DarkModeToggle isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} /></li>
         </ul>
       </div>
     </nav>

@@ -15,7 +15,7 @@ const TodoList = () => {
     try {
       const userId = await getUserId();
       const token = localStorage.getItem('token');
-      const response = await axios.get(`https://todolistmanager.onrender.com/getalltodo/${userId}`, {
+      const response = await axios.get(`http://localhost:8080/getalltodo/${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -33,7 +33,7 @@ const TodoList = () => {
   const getUserId = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('https://todolistmanager.onrender.com/getuserid', {
+      const response = await axios.get('http://localhost:8080/getuserid', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -48,7 +48,7 @@ const TodoList = () => {
     try {
       const userId = await getUserId(); // Get user ID
       const token = localStorage.getItem('token');
-      const response = await axios.get(`https://todolistmanager.onrender.com/filter/${userId}?priority=${priority}`, {
+      const response = await axios.get(`http://localhost:8080/filter/${userId}?priority=${priority}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -67,7 +67,7 @@ const TodoList = () => {
     try {
       const userId = await getUserId(); // Get user ID
       const token = localStorage.getItem('token');
-      const response = await axios.get(`https://todolistmanager.onrender.com/filter/${userId}?completed=${completed.toString()}`, {
+      const response = await axios.get(`http://localhost:8080/filter/${userId}?completed=${completed.toString()}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

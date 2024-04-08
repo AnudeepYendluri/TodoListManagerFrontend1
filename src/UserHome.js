@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './UserHome.css'
+import './UserHome.css';
 
-const UserHome = () => {
+const UserHome = ({ isDarkMode }) => {
   return (
-    <div className="userhome-container">
+    <div className={`userhome-container ${isDarkMode ? 'dark-mode' : ''}`}>
       <h1>Welcome to Todo Manager</h1>
       <div className="button-container">
         <Link to="/add-todo" className="button">Add Todo</Link>

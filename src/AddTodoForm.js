@@ -18,7 +18,7 @@ const AddTodoForm = () => {
 
       // Make API call to add todo
       const token = localStorage.getItem('token');
-      const response = await axios.post(`https://todolistmanager.onrender.com/addtodo?userId=${userId}`, {
+      const response = await axios.post(`http://localhost:8080/addtodo?userId=${userId}`, {
         title: title,
         description: description,
         completed: completed,
@@ -57,7 +57,7 @@ const AddTodoForm = () => {
   const getUserId = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('https://todolistmanager.onrender.com/getuserid', {
+      const response = await axios.get('http://localhost:8080/getuserid', {
         headers: {
           Authorization: `Bearer ${token}`
         }

@@ -1,0 +1,30 @@
+/* DarkMode.css */
+
+/* Dark mode styles for the entire application */
+body.dark-mode {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+/* Dark mode styles for the navbar */
+.navbar.dark-mode {
+    background-color: #333333;
+    color: #ffffff;
+}
+
+/* Dark mode styles for the edit button */
+.edit-button.dark-mode {
+    background-color: #333333;
+    color: #ffffff;
+}
+
+/* Dark mode styles for the delete button */
+.delete-button.dark-mode {
+    background-color: #333333;
+    color: #ff0000; /* Example color */
+}
+
+/* Dark mode styles for the edit page */
+.edit-page.dark-mode {
+    color: #ffffff; /* Adjust text color for the edit page */
+}
