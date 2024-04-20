@@ -22,6 +22,7 @@ const Login = ({ onLogin }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       // Update the backend API URL to point to your backend deployed on Render
       const response = await axios.post('http://localhost:8080/login', loginData);

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './EditTodoForm.css';
 
-
 const EditTodoForm = () => {
   const [todos, setTodos] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -12,6 +11,7 @@ const EditTodoForm = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [completed, setCompleted] = useState(false);
+  const [dueDate, setDueDate] = useState(''); // New state for due date
   const [successMessage, setSuccessMessage] = useState('');
 
   useEffect(() => {
@@ -20,17 +20,13 @@ const EditTodoForm = () => {
 
   const fetchTodos = async () => {
     try {
-      // Get userId using getUserId API
       const userId = await getUserId();
-
-      // Make API call to fetch todos for the user
       const token = localStorage.getItem('token');
       const response = await axios.get(`http://localhost:8080/getalltodo/${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-
       setTodos(response.data);
       setLoading(false);
     } catch (error) {
@@ -40,7 +36,6 @@ const EditTodoForm = () => {
     }
   };
 
-  // Function to get user ID from token by making an API call to your backend
   const getUserId = async () => {
     try {
       const token = localStorage.getItem('token');
@@ -60,37 +55,32 @@ const EditTodoForm = () => {
     setTitle(todo.title);
     setDescription(todo.description);
     setCompleted(todo.completed);
+    setDueDate(todo.dueDate); // Set due date from todo
     setEditMode(true);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Make API call to edit todo
       const token = localStorage.getItem('token');
       await axios.put(`http://localhost:8080/updatetodo/${editedTodo.id}`, {
         title: title,
         description: description,
-        completed: completed
+        completed: completed,
+        dueDate: dueDate // Include due date in the update request
       }, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
-
-      // Reset state
       setEditedTodo(null);
       setTitle('');
       setDescription('');
       setCompleted(false);
+      setDueDate(''); // Clear due date
       setEditMode(false);
-
-      // Refetch todos
       fetchTodos();
-
-      // Show success message
       setSuccessMessage('Todo updated successfully');
-
     } catch (error) {
       console.error('Error editing todo:', error);
       setError('Failed to edit todo. Please try again.');
@@ -122,6 +112,10 @@ const EditTodoForm = () => {
             <label className="edit-todo-label">Completed:</label>
             <input type="checkbox" className="edit-todo-checkbox" checked={completed} onChange={(e) => setCompleted(e.target.checked)} />
           </div>
+          <div className="edit-todo-input-group">
+            <label className="edit-todo-label">Due Date:</label>
+            <input type="date" className="edit-todo-input" value={dueDate} onChange={(e) => setDueDate(e.target.value)} />
+          </div>
           <button type="submit" className="edit-todo-btn">Update Todo</button>
         </form>
       ) : (
@@ -137,7 +131,7 @@ const EditTodoForm = () => {
       {successMessage && <p className="edit-todo-success">{successMessage}</p>}
     </div>
   );
-  
 };
 
 export default EditTodoForm;
+

@@ -6,6 +6,8 @@ const TodoList = () => {
   const [todos, setTodos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [sortByDueDate, setSortByDueDate] = useState('');
+  
 
   useEffect(() => {
     fetchTodos();
@@ -81,6 +83,33 @@ const TodoList = () => {
       setLoading(false);
     }
   };
+
+ const handleSortByDueDate = async (event) => {
+  const value = event.target.value;
+  setSortByDueDate(value); // Update sortByDueDate state
+  sortTodos(value); // Call sortTodos with the selected sorting order
+};
+
+
+ const sortTodos = async (order) => {
+  try {
+    const userId = await getUserId();
+    const token = localStorage.getItem('token');
+    const response = await axios.get(`http://localhost:8080/sort/${userId}?sortOrder=${order}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    setTodos(response.data);
+    setLoading(false);
+  } catch (error) {
+    console.error('Error sorting todos:', error);
+    setError('Failed to sort todos. Please try again.');
+    setLoading(false);
+  }
+};
+
   
 
   if (loading) {
@@ -99,11 +128,18 @@ const TodoList = () => {
       <button onClick={() => handlePriorityFilter('high')} className='filterButtonHigh'>High</button>
       <button onClick={() => handlePriorityFilter('medium')} className='filterButtonMedium'>Medium</button>
       <button onClick={() => handlePriorityFilter('low')} className='filterButtonLow'>Low</button>
+      <label htmlFor="sortByDueDate">Sort by Due Date:</label>
+      <select id="sortByDueDate" value={sortByDueDate} onChange={handleSortByDueDate}>
+        <option value="">Select</option>
+        <option value="asc">Ascending</option>
+        <option value="desc">Descending</option>
+      </select>
       <ul>
         {todos.map(todo => (
           <li key={todo.id}>
             <span>{todo.title}</span>
-            <span className={`priority-${todo.priority}`}>{todo.priority}</span> {/* Displaying priority level */}
+            <span className={`priority-${todo.priority}`}>{todo.priority}</span> 
+            <span className='due-date'>{new Date(todo.dueDate).toISOString().split('T')[0]}</span>
           </li>
         ))}
       </ul>

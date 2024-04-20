@@ -104,3 +104,14 @@
   color: white;
 }
 
+.todo-list-container li .due-date {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #76d4ee; /* Blue */
+  color: white;
+  padding: 5px;
+  border-radius: 3px;
+  font-size: 12px;
+}
+

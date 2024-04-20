@@ -8,7 +8,8 @@ const AddTodoForm = () => {
   const [completed, setCompleted] = useState(false);
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState('');
-  const [priority, setPriority] = useState('low'); 
+  const [priority, setPriority] = useState('low');
+  const [dueDate, setDueDate] = useState(''); // Step 1: Add state for due date
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,7 +23,8 @@ const AddTodoForm = () => {
         title: title,
         description: description,
         completed: completed,
-        priority : priority
+        priority: priority,
+        dueDate: dueDate // Include due date in the request payload
       }, {
         headers: {
           Authorization: `Bearer ${token}`
@@ -36,10 +38,10 @@ const AddTodoForm = () => {
       setDescription('');
       setCompleted(false);
       setPriority('');
+      setDueDate(''); // Clear due date field
 
       // Show success message
       setSuccessMessage('Todo Added Successfully');
-
     } catch (error) {
       // Log the error for debugging
       console.error('Error adding todo:', error);
@@ -53,6 +55,7 @@ const AddTodoForm = () => {
     }
   };
 
+    console.log("Due date" , dueDate);
   // Function to get user ID from token by making an API call to your backend
   const getUserId = async () => {
     try {
@@ -94,6 +97,10 @@ const AddTodoForm = () => {
             <option value="high">High</option>
           </select>
         </div>
+        <div className="form-group"> {/* Step 2: Add input field for due date */}
+          <label>Due Date:</label>
+          <input type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} />
+        </div>
         <button type="submit" className="submit-button">Add Todo</button>
       </form>
     </div>
@@ -101,3 +108,4 @@ const AddTodoForm = () => {
 };
 
 export default AddTodoForm;
+

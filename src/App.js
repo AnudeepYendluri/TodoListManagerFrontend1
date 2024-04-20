@@ -59,11 +59,11 @@ function App() {
           {/* For example: */}
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/userhome" element={<UserHome />} />
+          <Route path="/userhome" element={<UserHome isLoggedIn={isLoggedIn} />} />
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
           <Route path="/add-todo" element={<AddTodoForm />} />
           <Route path="/delete-todo" element={<DeleteTodoButton />} />
-          <Route path="/update-todo" element={<EditTodoForm />} />
+          <Route path="/update-todo" element={<EditTodoForm isDarkMode={isDarkMode} />} /> {/* Pass isDarkMode as prop */}
           <Route path="/get-todo" element={<TodoList />} />
         </Routes>
       </div>

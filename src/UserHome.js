@@ -9,8 +9,8 @@ const UserHome = ({ isDarkMode }) => {
       <div className="button-container">
         <Link to="/add-todo" className="button">Add Todo</Link>
         <Link to="/get-todo" className="button">View Todos</Link>
-        <Link to="/update-todo" className="button">Edit Todo</Link>
-        <Link to="/delete-todo" className="button">Delete Todo</Link>
+        <Link to="/update-todo" className={`button ${isDarkMode ? 'dark-mode-button' : ''}`}>Edit Todo</Link> {/* Apply dark mode class conditionally */}
+        <Link to="/delete-todo" className={`button ${isDarkMode ? 'dark-mode-button' : ''}`}>Delete Todo</Link> {/* Apply dark mode class conditionally */}
       </div>
     </div>
   );

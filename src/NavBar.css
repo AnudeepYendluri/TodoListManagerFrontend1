@@ -1,53 +1,64 @@
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #333;
-    color: #fff;
-  }
-  
-  .navbar .right h1 {
-    margin: 0;
-  }
-  
-  .navbar .right h1 span {
-    color: #ff9900;
-  }
-  
-  .navbar .left ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .navbar .left ul li {
-    display: inline-block;
-    margin-right: 10px;
-  }
-  
-  .navbar .left ul li:last-child {
-    margin-right: 0;
-  }
-  
-  .navbar .left ul li a {
-    color: #fff;
-    text-decoration: none;
-  }
-  
-  .navbar .left ul li a:hover {
-    text-decoration: underline;
-  }
-  
-  .navbar .left ul li button {
-    padding: 5px 10px;
-    background-color: #ff9900;
-    color: #333;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .navbar .left ul li button:hover {
-    background-color: #ffcc66;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+}
+
+.navbar .right h1 {
+  margin: 0;
+}
+
+.navbar .right h1 span {
+  color: #ff9900;
+}
+
+.navbar .left ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex; /* Change to flex display */
+  align-items: center; /* Align items vertically */
+}
+
+.navbar .left ul li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.navbar .left ul li:last-child {
+  margin-right: 0;
+}
+
+.navbar .left ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.navbar .left ul li a:hover {
+  text-decoration: underline;
+}
+
+.navbar .left ul li button {
+  padding: 5px 10px;
+  background-color: #ff9900;
+  color: #333;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.navbar .left ul li button:hover {
+  background-color: #ffcc66;
+}
+
+.navbar .left ul li .dark-mode-toggle {
+  display: flex; /* Display moon icon and dark mode toggle button as flex items */
+  align-items: center; /* Align items vertically */
+}
+
+.navbar .left ul li .dark-mode-toggle .fa-moon {
+  margin-right: 5px; /* Add some margin between the moon icon and the dark mode toggle button */
+}

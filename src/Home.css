@@ -1,6 +1,8 @@
 /* Home.css */
 
 /* Container styling */
+
+
 .home-container {
     display: flex;
     justify-content: space-around; /* Center items with space around them */
@@ -18,7 +20,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 30px;
     border-radius: 10px;
-    background-color: #ffffff;
+    background-color: #eef5f5;
   }
   
   
@@ -32,3 +34,5 @@
     border-radius: 8px; /* Add rounded corners to the image */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow effect */
   }
+
+  
